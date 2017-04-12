@@ -182,8 +182,10 @@ namespace Appl
             if ( !Hard.IsConvoyeurEnable )
                 Hard.EnableConvoyeur( true );
 
-            if ( size > MainWindow.Model.ConfigParameter.SizePieceDetection.Value )
-            {                
+            //if ( size > MainWindow.Model.ConfigParameter.SizePieceDetection.Value )
+            if( Hard.IsPieceDetected )
+            {
+                Hard.EnableConvoyeur(false);
                 TextInfos = "Piece trouvée : taille = " + size.ToString();
                 AddLineToLog( TextInfos );
                 NextState = eStateSystem.PieceGoToTest;
@@ -198,12 +200,9 @@ namespace Appl
 
         void PieceGoToTestState()
         {
-            int size = GetImageAndSize( MainWindow.Model.Cam.AquEntryZone );
-
-            if ( !Hard.IsConvoyeurEnable )
-                Hard.EnableConvoyeur( true );
-
-            if ( size < MainWindow.Model.ConfigParameter.SizeEntryZoneEmpty.Value && size > 100 )
+            int size = GetImageAndSize( MainWindow.Model.Cam.AquBrickImage );
+            
+            if ( size > MainWindow.Model.ConfigParameter.SizePieceDetection.Value )
             {
                 TextInfos = "Piece en place pour test : taille = " + size.ToString();
                 AddLineToLog( TextInfos );
@@ -213,6 +212,11 @@ namespace Appl
             }
             else
             {
+                Hard.EnableConvoyeur(true);
+                Thread.Sleep(200);
+                Hard.EnableConvoyeur(false);
+                Thread.Sleep(800);
+
                 string t = "Size piece : " + size.ToString();
                 TextInfos = t;
             }
@@ -220,6 +224,8 @@ namespace Appl
 
         void CompareImageState()
         {
+            Hard.EnableConvoyeur(false);
+
             int size = GetImageAndSize( MainWindow.Model.Cam.AquBrickImage );
 
             // Found image
@@ -249,7 +255,9 @@ namespace Appl
 
         void EjectPieceDetectState()
         {
-            int size = GetImageAndSize( MainWindow.Model.Cam.AquEndConvWindow );
+            NextState = eStateSystem.EjectPieceEnd;
+            //Plus besoin avec nouveau système à bascule
+            /*int size = GetImageAndSize( MainWindow.Model.Cam.AquEndConvWindow );
 
             if ( !Hard.IsConvoyeurEnable )
                 Hard.EnableConvoyeur( true );
@@ -265,11 +273,18 @@ namespace Appl
                 string t = "   Size end : " + size.ToString();
                 t += "   < : " + MainWindow.Model.ConfigParameter.SizeEndConvMinPiecePresent.Value.ToString( "0" );
                 TextInfos = t;
-            }
+            }*/
         }
 
         void EjectPieceEndState()
         {
+            Hard.EjectPiece();
+            NextState = eStateSystem.WaitPiece;
+            AddLineToLog("End");
+            AddLineToLog("");
+
+            //Plus besoin avec nouveau système à bascule
+            /*
             int size = GetImageAndSize( MainWindow.Model.Cam.AquEndConvWindow );
 
             if ( size < MainWindow.Model.ConfigParameter.SizeEndConvMaxEmpty.Value && size > 100 )
@@ -284,7 +299,7 @@ namespace Appl
                 string t = "   Size end : " + size.ToString();
                 t += "   > : " + MainWindow.Model.ConfigParameter.SizeEndConvMaxEmpty.Value.ToString( "0" );
                 TextInfos = t;
-            }
+            }*/
         }
 
 

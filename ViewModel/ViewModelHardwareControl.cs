@@ -145,7 +145,7 @@ namespace Appl
         public RoutedUICommand CommandEjectPiece { get; set; }
         void EjectPiece ( object param, ExecutedRoutedEventArgs e )
         {
-            MainWindow.Model.Hard.PushPiece();
+            MainWindow.Model.Hard.EjectPiece();
         }
 
         void CanEjectPiece ( object param, CanExecuteRoutedEventArgs e )

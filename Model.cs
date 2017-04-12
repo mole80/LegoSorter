@@ -358,6 +358,7 @@ namespace Appl
         public Parameter SizeEndConvMinPiecePresent = new Parameter( 5, "Taille min piece presente fin de convoyeur", 5000 );
         public Parameter SizeEndConvMaxEmpty = new Parameter( 6, "Taille max fin de convoyeur vide", 2000 );
         public Parameter DeltaIntensityRemoveBack = new Parameter( 7, "Difference d'intensité pour détection avec le fond", 90 );
+        public Parameter IndexCameraNumber = new Parameter(8, "Index de la camera", 1);
 
         public ConfigParametersClass()
         {
@@ -373,6 +374,7 @@ namespace Appl
             ConfigParametersList.Add( SizeEndConvMinPiecePresent );
             ConfigParametersList.Add( SizeEndConvMaxEmpty );
             ConfigParametersList.Add( DeltaIntensityRemoveBack );
+            ConfigParametersList.Add( IndexCameraNumber );
         }
 
     }
@@ -927,7 +929,7 @@ namespace Appl
 
             ImageBackground = new ImageRef();
 
-            Capture = new Capture(0);
+            Capture = new Capture( (int)ConfigParameter.IndexCameraNumber.Value );
             ConfigureCapture();
 
             Cam = new Cam();
@@ -949,24 +951,29 @@ namespace Appl
         {
             _win.Initialize( BricksRef.Count );
             _win.Topmost = true;
-            //_win.Show();
+            _win.Show();
             Thread t = new Thread( ThreadInitialize );
-            //t.Start();
+            t.Start();
         }
 
         void ThreadInitialize()
         {
             for ( int k = 0; k < BricksRef.Count; k++ )
             {
-                Application.Current.Dispatcher.Invoke( new Action( delegate
+                BricksRef[k] = CalculMatchingImage(BricksRef[k]);
+
+                /*Application.Current.Dispatcher.Invoke( new Action( delegate
                 {
                     BricksRef[k] = CalculMatchingImage( BricksRef[k] );
-                } ) );
+                } ) );*/
 
-                Application.Current.Dispatcher.Invoke( new Action( delegate
-                {                    
-                    _win.SetValue( k );
-                } ) );
+                if (k % 10 == 0)
+                {
+                    Application.Current.Dispatcher.Invoke(new Action(delegate
+                  {
+                      _win.SetValue(k);
+                  }));
+                }
             }
 
             Application.Current.Dispatcher.Invoke( new Action( delegate

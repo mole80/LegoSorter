@@ -25,21 +25,6 @@ namespace Appl
             InitializeComponent();
         }
 
-        private void EjectToEnd_Click( object sender, RoutedEventArgs e )
-        {
-            Hardware hard = MainWindow.Model.Hard;
-
-            hard.IsPushForward = true;
-            hard.IsPushEnable = !hard.IsPushEnable;
-        }
-
-        private void EjectToStart_Click( object sender, RoutedEventArgs e )
-        {
-            Hardware hard = MainWindow.Model.Hard;
-
-            hard.IsPushForward = false;
-            hard.IsPushEnable = !hard.IsPushEnable;
-        }
 
         private void Plateau_Click( object sender, RoutedEventArgs e )
         {

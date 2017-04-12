@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="380"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
@@ -53,7 +53,7 @@
             </TabControl>
         </StackPanel>
 
-        <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left">
+        <StackPanel Margin="0,20,0,0" HorizontalAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
                 <Button Content="Convoyeur start" Width="100" Command="{Binding CommandStartConvoyeur}"/>
                 <Button Margin="10,0" Content="Convoyeur stop" Width="100" Command="{Binding CommandConvoyeurStop}"/>
@@ -66,8 +66,6 @@
             <Button Content="Eject" Width="100" Command="{Binding CommandEjectPiece}"/>
             
             <StackPanel Margin="0,20" Orientation="Horizontal">
-                <Button Name="EjectToEnd" Content="Eject -> end" Width="100" Click="EjectToEnd_Click"/>
-                <Button Name="EjectToStart" Content="Eject -> start" Width="100" Click="EjectToStart_Click"/>
                 <Button Name="Plateau" Content="Plateau move" Width="100" Click="Plateau_Click"/>
             </StackPanel>
             
@@ -84,22 +82,18 @@
                         <TextBlock Text="{Binding Hard.SwitchPlateauPosition}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="In1 D2, Push end : "/>
-                        <TextBlock Text="{Binding Hard.SwitchPushEnd}"/>
+                        <TextBlock Text="In1 D2, Pce Det : "/>
+                        <TextBlock Text="{Binding Hard.IsPieceDetected}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="In2 D4, Push start : "/>
-                        <TextBlock Text="{Binding Hard.SwitchPushStart}"/>
+                        <TextBlock Text="In2 D4, Eject : "/>
+                        <TextBlock Text="{Binding Hard.SwitchPush}"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Eject : "/>
                         <TextBlock Text="{Binding Hard.IsPushEnable}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Eject en avant : "/>
-                        <TextBlock Text="{Binding Hard.IsPushForward}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Plateau : "/>

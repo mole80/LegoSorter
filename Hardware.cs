@@ -87,20 +87,21 @@ namespace Appl
             IsConvoyeurEnable = state;
         }
 
-        public bool PushPiece()
+        public bool EjectPiece()
         {
             bool result = false;
 
-            IsPushForward = true;
             IsPushEnable = true;
 
-            while ( _switchPushEnd == false )
+            while ( _switchPush == true )
                 Thread.Sleep( 10 );
 
-            IsPushForward = false;
+            Thread.Sleep(1000);
 
-            while ( _switchPushStart == false )
+            while ( _switchPush == false )
                 Thread.Sleep( 10 );
+
+            IsPushEnable = false;
 
             result = true;
             return result;
@@ -177,8 +178,8 @@ namespace Appl
 
                 SwitchPlateauRef0 = !ValRead[0];
                 SwitchPlateauPosition = !ValRead[1];
-                SwitchPushEnd = !ValRead[2];
-                SwitchPushStart = !ValRead[4];
+                IsPieceDetected = !ValRead[2];
+                SwitchPush = !ValRead[4];
 
                 DecodePlateauPosition();
 
@@ -197,8 +198,8 @@ namespace Appl
                     ValWrite[0] |= 64;
 
                 //D7 - Cmd4
-                if ( IsPushForward )
-                    ValWrite[0] |= 128;
+                //if ( IsPushForward )
+                //    ValWrite[0] |= 128;
 
                 status = device.Write( ValWrite, 1, ref nbrRes );
 
@@ -211,36 +212,37 @@ namespace Appl
         bool _oldSwitchPlateau0;
         bool _oldSwitchPlateauPos;
 
-        public const string SwitchPushEndPropertyName = "SwitchPushEnd";
-        public bool SwitchPushEnd
-        {
-            get { return _switchPushEnd; }
-            set
-            {
-                if ( _switchPushEnd != value )
-                {
-                    _switchPushEnd = value;
-                    DoPropertyChanged( SwitchPushEndPropertyName );
-                }
-            }
-        }
-        private bool _switchPushEnd;
-        
 
-        public const string SwitchPushStartPropertyName = "SwitchPushStart";
-        public bool SwitchPushStart
+        public const string IsPieceDetectedPropertyName = "IsPieceDetected";
+        public bool IsPieceDetected
         {
-            get { return _switchPushStart; }
+            get { return _isPieceDetected; }
             set
             {
-                if ( _switchPushStart != value )
+                if (_isPieceDetected != value)
                 {
-                    _switchPushStart = value;
-                    DoPropertyChanged( SwitchPushStartPropertyName );
+                    _isPieceDetected = value;
+                    DoPropertyChanged(IsPieceDetectedPropertyName);
                 }
             }
         }
-        private bool _switchPushStart;
+        private bool _isPieceDetected;
+
+
+        public const string SwitchPushPropertyName = "SwitchPush";
+        public bool SwitchPush
+        {
+            get { return _switchPush; }
+            set
+            {
+                if ( _switchPush != value )
+                {
+                    _switchPush = value;
+                    DoPropertyChanged( SwitchPushPropertyName );
+                }
+            }
+        }
+        private bool _switchPush;
         
 
         public const string SwitchPlateauPositionPropertyName = "SwitchPlateauPosition";
@@ -289,23 +291,7 @@ namespace Appl
             }
         }
         private bool _isPushEnable;
-        
-        
-        public const string IsPushForwardPropertyName = "IsPushForward";
-        public bool IsPushForward
-        {
-            get { return _isPushForward; }
-            set
-            {
-                if ( _isPushForward != value )
-                {
-                    _isPushForward = value;
-                    DoPropertyChanged( IsPushForwardPropertyName );
-                }
-            }
-        }
-        private bool _isPushForward;
-        
+                
 
         public const string IsConvoyeurEnablePropertyName = "IsConvoyeurEnable";
         public bool IsConvoyeurEnable

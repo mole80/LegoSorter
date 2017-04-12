@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Prive\leg\Soft\Appl\obj\Debug\
+D:\Project\TestGit\LegAppl\obj\Debug\
 Appl
 none
 false
 DEBUG;TRACE
-D:\Prive\leg\Soft\Appl\App.xaml
+D:\Project\TestGit\LegAppl\App.xaml
 10979763213
 
 32-247519586
-291552788965
+291187307080
 CalculateImageRefWindows.xaml;MainWindow.xaml;View\AcquisitionConfig.xaml;View\ConfigParametersView.xaml;View\ConfigProgram.xaml;View\ConfigWebcam.xaml;View\GestionImageRef.xaml;View\HardwareConfigView.xaml;View\PlotImageRefInfosControl.xaml;View\TrieurControl.xaml;
 
-True
+False
 
