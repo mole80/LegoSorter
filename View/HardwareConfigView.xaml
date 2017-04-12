@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Appl.HardwareConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Start cam" Command="{Binding CommandStartCam}"/>
+                <Button Margin="10,0" Content="Stop cam" Command="{Binding CommandStopCam}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15">
+                <TextBlock Text="Temps execution : "/>
+                <TextBlock Text="{Binding TimeExecuteCiclic}"/>
+            </StackPanel>
+            
+            <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+                <TabItem Header="Entrée">
+                    <StackPanel>
+                        <Image Margin="0,20" Width="300" MaxHeight="300" HorizontalAlignment="Center" Source="{Binding ImageEntryZone}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Size image zone entrée : "/>
+                            <TextBlock Text="{Binding  SizeEntryZone}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Piece">
+                    <StackPanel>
+                        <Image Margin="0,20" Width="300" MaxHeight="300" HorizontalAlignment="Center" Source="{Binding ImagePiece}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Size image : "/>
+                            <TextBlock Text="{Binding  SizeImagePiece}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Fin">
+                    <StackPanel>
+                        <Image Width="300" MaxHeight="300" HorizontalAlignment="Center" Source="{Binding ImageEndConv}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Size image : "/>
+                            <TextBlock Text="{Binding  SizeImageEndConv}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+
+        <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Convoyeur start" Width="100" Command="{Binding CommandStartConvoyeur}"/>
+                <Button Margin="10,0" Content="Convoyeur stop" Width="100" Command="{Binding CommandConvoyeurStop}"/>
+            </StackPanel>            
+            <StackPanel Margin="0,20" Orientation="Horizontal">
+                <Button Content="Go To Pos" Command="{Binding CommandPlateauGoTo}"/>
+                <TextBox Margin="10,0" Text="{Binding NextPosition}" Width="100"/>
+                <TextBlock Text="{Binding Hard.PlateauPosition}" Width="20"/>
+            </StackPanel>
+            <Button Content="Eject" Width="100" Command="{Binding CommandEjectPiece}"/>
+            
+            <StackPanel Margin="0,20" Orientation="Horizontal">
+                <Button Name="EjectToEnd" Content="Eject -> end" Width="100" Click="EjectToEnd_Click"/>
+                <Button Name="EjectToStart" Content="Eject -> start" Width="100" Click="EjectToStart_Click"/>
+                <Button Name="Plateau" Content="Plateau move" Width="100" Click="Plateau_Click"/>
+            </StackPanel>
+            
+            <TextBlock Name="deb"/>
+            
+            <UniformGrid Columns="2">
+                <StackPanel Margin="0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="In3 D0, Plateau ref : "/>
+                        <TextBlock Text="{Binding Hard.SwitchPlateauRef0}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="In0 D1, Plateau pos : "/>
+                        <TextBlock Text="{Binding Hard.SwitchPlateauPosition}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="In1 D2, Push end : "/>
+                        <TextBlock Text="{Binding Hard.SwitchPushEnd}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="In2 D4, Push start : "/>
+                        <TextBlock Text="{Binding Hard.SwitchPushStart}"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Eject : "/>
+                        <TextBlock Text="{Binding Hard.IsPushEnable}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Eject en avant : "/>
+                        <TextBlock Text="{Binding Hard.IsPushForward}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Plateau : "/>
+                        <TextBlock Text="{Binding Hard.IsPlateauEnable}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Convoyeur : "/>
+                        <TextBlock Text="{Binding Hard.IsConvoyeurEnable}"/>
+                    </StackPanel>
+                </StackPanel>
+            </UniformGrid>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

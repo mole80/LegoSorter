@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigParametersClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ThresholdIntensityHigh>
+    <Id>1</Id>
+    <Name>Seuil intensité max</Name>
+    <Value>240</Value>
+  </ThresholdIntensityHigh>
+  <ThresholdIntensityLow>
+    <Id>2</Id>
+    <Name>Seuil intensité min</Name>
+    <Value>1</Value>
+  </ThresholdIntensityLow>
+  <SizePieceDetection>
+    <Id>3</Id>
+    <Name>Taille min detection pièce</Name>
+    <Value>1000</Value>
+  </SizePieceDetection>
+  <SizeEntryZoneEmpty>
+    <Id>4</Id>
+    <Name>Taille max pour zone entrée vide</Name>
+    <Value>1000</Value>
+  </SizeEntryZoneEmpty>
+  <SizeEndConvMinPiecePresent>
+    <Id>5</Id>
+    <Name>Taille min piece presente fin de convoyeur</Name>
+    <Value>5000</Value>
+  </SizeEndConvMinPiecePresent>
+  <SizeEndConvMaxEmpty>
+    <Id>6</Id>
+    <Name>Taille max fin de convoyeur vide</Name>
+    <Value>2000</Value>
+  </SizeEndConvMaxEmpty>
+  <DeltaIntensityRemoveBack>
+    <Id>7</Id>
+    <Name>Difference d'intensité pour détection avec le fond</Name>
+    <Value>90</Value>
+  </DeltaIntensityRemoveBack>
+</ConfigParametersClass>

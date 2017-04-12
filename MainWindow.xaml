@@ -1,0 +1,22 @@
+﻿<Window x:Class="Appl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="750" Width="1025" Closed="Window_Closed" Loaded="Window_Loaded">
+    <DockPanel>
+        <Menu Margin="0,10" DockPanel.Dock="Top" Height="25" FontSize="14">
+            <MenuItem Header="Fichier">
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Save"/>
+                <MenuItem Command="SaveAs"/>
+            </MenuItem>
+            <MenuItem Header="Controle">
+                <MenuItem Header="Programme" Command="{Binding CommandControlProgram}"/>
+                <MenuItem Header="Configuration" Command="{Binding CommandControlConfig}"/>
+            </MenuItem>
+        </Menu>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ContentControl Content="{Binding MainControl}"/>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

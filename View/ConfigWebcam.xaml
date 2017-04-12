@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Appl.ConfigWebcam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:WinForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:local ="clr-namespace:Appl"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"  IsVisibleChanged="UserControl_IsVisibleChanged" Loaded="UserControl_Loaded" >
+
+    <UserControl.Resources>
+        <Style TargetType="StackPanel" x:Key="StyleStackParamCam">
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Width" Value="70"/>
+                </Style>
+                <Style TargetType="Slider">
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="AutoToolTipPlacement" Value="TopLeft"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="StyleStackParamCamAqc" BasedOn="{StaticResource StyleStackParamCam}">
+            <Style.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="100"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <DataTemplate DataType="{x:Type local:WindowsAquisition}">
+            <Border BorderBrush="Green" Name="borderTempl" BorderThickness="0">
+                <StackPanel Width="290">
+                    <TextBlock HorizontalAlignment="Center" Margin="0,10" Text="{Binding Title}" FontSize="16"/>
+
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCamAqc}">
+                        <TextBlock Text="Left"/>
+                        <TextBox Name="TextBoxLeft" Text="{Binding PosX, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCamAqc}">
+                        <TextBlock Text="Top"/>
+                        <TextBox Name="TextBoxTop" Text="{Binding PosY, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCamAqc}">
+                        <TextBlock Text="Width"/>
+                        <TextBox Name="TextBoxWidth" Text="{Binding Width, Mode=TwoWay}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCamAqc}">
+                        <TextBlock Text="Height"/>
+                        <TextBox Name="TextBoxHeight" Text="{Binding Height, Mode=TwoWay}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter TargetName="borderTempl" Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        
+    </UserControl.Resources>
+
+    <Grid MouseLeftButtonUp="TabControl_MouseLeftButtonUp">
+        <DockPanel>
+            <StackPanel Margin="0,10" DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Start" Command="{Binding CommandStartWebCam}"/>
+                    <Button Margin="10,0,25,0" Content="Stop" Command="{Binding CommandStopWebCam}"/>
+                    
+                    <CheckBox Content="Monochrome" IsChecked="{Binding GrayImage}"/>
+                    <CheckBox Margin="25,0" Content="Use background" IsChecked="{Binding UseBackground}"/>
+
+                    <Button Content="Update Background" Command="{Binding CommandCaptureBackground}"/>
+
+                    <CheckBox Margin="25,0" Content="Use filter" IsChecked="{Binding UseFilter}"/>
+                    
+                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ContentControl Grid.Column="1" Content="{Binding Cam.AquBrickImage}" PreviewMouseLeftButtonDown="ContentControl_MouseLeftButtonDown"/>
+                    <ContentControl Grid.Column="2" Content="{Binding Cam.AquEndConvWindow}" PreviewMouseLeftButtonDown="ContentControl_MouseLeftButtonDown"/>
+                    <ContentControl Grid.Column="3" Content="{Binding Cam.AquEntryZone}" PreviewMouseLeftButtonDown="ContentControl_MouseLeftButtonDown"/>
+
+                    <StackPanel>
+                        <TextBlock Margin="10" Text="Webcam" FontSize="16"/>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Brightness"/>
+                            <Slider Value="{Binding Cam.Britghness, Mode=TwoWay}" Minimum="50" Maximum="100" ValueChanged="CamParameters_ValueChanged" AutoToolTipPlacement="TopLeft"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Saturation"/>
+                            <Slider Value="{Binding Cam.Saturation, Mode=TwoWay}" Minimum="0" Maximum="150" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}" Visibility="Collapsed">
+                            <TextBlock Text="Gamma"/>
+                            <Slider Value="{Binding Cam.Gamma, Mode=TwoWay}" Minimum="0" Maximum="255" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Gain"/>
+                            <Slider Value="{Binding Cam.Gain, Mode=TwoWay}" Minimum="0" Maximum="30" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Exposure"/>
+                            <Slider Value="{Binding Cam.Exposure, Mode=TwoWay}" Minimum="-10" Maximum="0" TickFrequency="1" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Contrast"/>
+                            <Slider Value="{Binding Cam.Contrast, Mode=TwoWay}" Minimum="30" Maximum="100" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}" Visibility="Collapsed">
+                            <TextBlock Text="Focus"/>
+                            <Slider Value="{Binding Cam.Focus, Mode=TwoWay}" Minimum="-100" Maximum="100" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,20" Orientation="Horizontal" Style="{StaticResource StyleStackParamCam}">
+                            <TextBlock Text="Delta BG"/>
+                            <Slider Value="{Binding DeltaIntensity, Mode=TwoWay}" Minimum="0" Maximum="200" ValueChanged="CamParameters_ValueChanged"/>
+                        </StackPanel>
+
+
+                        <TextBlock Margin="0,10,0,0" Text="{Binding CursorPositionImage.PosX, StringFormat='Image X : {0:F0}'}"/>
+                        <TextBlock Text="{Binding CursorPositionImage.PosY, StringFormat='Image Y : {0:F0}'}"/>
+                        <TextBlock Text="{Binding CursorPositionCanvas.PosX, StringFormat='Canvas X : {0:F0}'}"/>
+                        <TextBlock Text="{Binding CursorPositionCanvas.PosY, StringFormat='Canvas Y : {0:F0}'}"/>
+                        <TextBlock Text="{Binding CursorPositionCanvas.PosY, StringFormat='Moyenne fond : {0:F0}'}"/>
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+
+            <UniformGrid Columns="2">
+                <Canvas Width="500" Name="CanvasRectAqc" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Width="500" Name="ImageWebCam" HorizontalAlignment="Left" Source="{Binding ImageWebSource}"  MouseLeftButtonDown="Image_MouseLeftButtonDown" MouseMove="Image_MouseMove" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+                    <Rectangle Name="RectangleWindows" Stroke="#FF51FF00" StrokeThickness="2"/>
+                </Canvas>
+
+                <StackPanel>
+                    <WindowsFormsHost Name="WinHostHistoControl" Height="200"/>
+                    <Image Width="200" Source="{Binding ImageBackground}"/>
+                </StackPanel>
+                
+            </UniformGrid>
+
+
+        </DockPanel>
+    </Grid>
+
+</UserControl>
+

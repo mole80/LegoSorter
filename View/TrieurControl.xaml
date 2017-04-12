@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Appl.TrieurControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+
+        <StackPanel Margin="10" Orientation="Horizontal" DockPanel.Dock="Top">
+            <CheckBox Content="Switch state auto" IsChecked="{Binding SwitchAutoNextState}"/>
+            <CheckBox Content="Log" IsChecked="{Binding LogEnable}"/>
+        </StackPanel>
+
+        <TextBlock Width="200" DockPanel.Dock="Right" Text="{Binding Log}"/>
+
+        <UniformGrid Columns="3" DockPanel.Dock="Top" Height="40">
+            <Button Width="80" Content="Start" Command="{Binding CommandStartSystem}"/>
+            <Button Width="80"  Content="Stop" Command="{Binding CommandStopSystem}"/>
+            <Button Width="80" Content="Suiv ->" Command="{Binding CommandSwitchNextState}"/>
+        </UniformGrid>
+
+        <UniformGrid DockPanel.Dock="Top" Columns="2">
+            <StackPanel  Orientation="Horizontal" Height="40">
+                <TextBlock Text="Machine : " VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding StateSystem}" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="40">
+                <TextBlock Text="Next state : " VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding NextState}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </UniformGrid>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,15">
+            <TextBlock Text="Temps execution : "/>
+            <TextBlock Text="{Binding TimeExecuteCiclic}"/>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="40">
+            <TextBlock Text="Infos : " VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding TextInfos}" VerticalAlignment="Center"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Height="300">
+            <Image Width="300" Source="{Binding ImageAtester.ImageSource}"/>
+            <Image Width="300" Source="{Binding ImageRef.ImageSource}"/>
+        </StackPanel>
+        
+        
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Appl.AcquisitionConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:local ="clr-namespace:Appl"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+   
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="GetImage" Command="{Binding CommandGetImageCheck}" ToolTip="Prend une image de la caméra"/>
+                    <Button Content="Check" Command="{Binding CommandCheckImage}" ToolTip="Compare l'image a tester avec la base de donnée"/>
+                    <Button Content="Background" Command="{Binding CommandSetBackgroundImage}" Visibility="Collapsed" ToolTip=""/>
+                    <Button Content="Save img a tester" Command="{Binding CommandSaveImage}" ToolTip="Save capture image to unknow file"/>
+                    <Button Content="Cree image Ref" Command="{Binding CommandSaveImageRef}" ToolTip="Cree une image ref avec l'image a tester"/>
+                    <Button Content="Load Image" Command="{Binding CommandLoadImage}" ToolTip="Charge une image depuis un fichier pour la comparer a la base de donnée"/>
+                    <CheckBox Content="Background" IsChecked="{Binding BackSustraction}" Visibility="Collapsed"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Id" Command="{Binding CommandSortResult}" CommandParameter="Id" ToolTip="Trie par ID"/>
+                    <Button Content="Histo" Command="{Binding CommandSortResult}" CommandParameter="Hist" ToolTip="Trie par Hysto"/>
+                    <Button Content="Key" Command="{Binding CommandSortResult}" CommandParameter="Key" ToolTip="Trie par Clef"/>
+                    <Button Content="Size" Command="{Binding CommandSortResult}" CommandParameter="Size" ToolTip="Trie par Taille"/>
+                    <Button Content="Total" Command="{Binding CommandSortResult}" CommandParameter="Total" ToolTip="Trie par Total"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <!--<StackPanel DockPanel.Dock="Top" Height="20" Background="#FFF4FFCF">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding SelectedResult.ResultCompHist, StringFormat='Comp hist : {0:F1}'}"/>
+                </StackPanel>
+            </StackPanel>-->
+            
+            <ListView DockPanel.Dock="Left" Width="300" ItemsSource="{Binding ResultsCompareList}" SelectedItem="{Binding SelectedResult}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding ImageName}" Foreground="Blue" FontSize="14" />
+                            <StackPanel Orientation="Horizontal">                                               
+                                <TextBlock Text="{Binding KeyPointsNumbers}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding NumbersOfCountDist}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding NumberMatchOrientationAndDistance}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding NumberOfCircles}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding NumberOfLine}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding ErrorSize, StringFormat='0.##'}"/>
+                                <TextBlock Text=", "/>
+                                <TextBlock Text="{Binding ErrorTotal, StringFormat='0.##'}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ResultCompHist[0], StringFormat='Hist : {0:F3}'}"/>
+                                <TextBlock Text="{Binding ResultCompHist[1], StringFormat=' , {0:F3}'}"/>
+                                <TextBlock Text="{Binding ResultCompHist[2], StringFormat=' , {0:F3}'}"/>
+                                <TextBlock Text="{Binding ResultCompHist[3], StringFormat=' , {0:F3}'}"/>
+                                <TextBlock Text="{Binding ResultCompHist[4], StringFormat=' , {0:F3}'}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ContentControl MaxWidth="800" Content="{Binding PlotImageTestControl}" DockPanel.Dock="Top"/>
+            <!--<Image Width="200" Source="{Binding ImageTestCheck}"/>-->
+            <ContentControl Content="{Binding PlotImageRefControl}" DockPanel.Dock="Top"/>
+
+            <Image Width="1000" Source="{Binding ImageCompareLeft}"/>
+            
+            <!--<UniformGrid Columns="2" MaxWidth="800">                
+                <Image Source="{Binding ImageCompareLeft}"/>
+                <Image Source="{Binding ImageCompareRight}"/>
+            </UniformGrid>-->
+            
+        </DockPanel>
+    </Grid>
+</UserControl>

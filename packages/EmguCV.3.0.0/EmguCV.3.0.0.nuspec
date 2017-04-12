@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EmguCV</id>
+    <version>3.0.0</version>
+    <title>EmguCV</title>
+    <authors>emgu</authors>
+    <owners>emgu</owners>
+    <licenseUrl>https://www.gnu.org/licenses/gpl-3.0.en.html</licenseUrl>
+    <projectUrl>http://www.emgu.com/</projectUrl>
+    <iconUrl>http://a.fsdn.com/con/app/proj/emgucv/screenshots/162632.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Emgu CV is a cross platform .Net wrapper to the OpenCV image processing library. Allowing OpenCV functions to be called from .NET compatible languages such as C#, VB, VC++, IronPython etc. The wrapper can be compiled in Mono and run on Windows, Linux, Mac OS X, iPhone, iPad and Android devices.</description>
+    <summary>Emgu CV is a cross platform .Net wrapper to the OpenCV image processing library. Allowing OpenCV functions to be called from .NET compatible languages such as C#, VB, VC++, IronPython etc. The wrapper</summary>
+    <releaseNotes>Initial release</releaseNotes>
+    <language>en-US</language>
+    <tags>emgu emgucv opencv</tags>
+  </metadata>
+</package>

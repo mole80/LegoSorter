@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cam xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AquBrickImage>
+    <IsSelected>false</IsSelected>
+    <Height>445</Height>
+    <Width>414</Width>
+    <PosY>35</PosY>
+    <PosX>225</PosX>
+  </AquBrickImage>
+  <AquEndConvWindow>
+    <IsSelected>false</IsSelected>
+    <Height>232</Height>
+    <Width>199</Width>
+    <PosY>140</PosY>
+    <PosX>683</PosX>
+  </AquEndConvWindow>
+  <AquEntryZone>
+    <IsSelected>true</IsSelected>
+    <Height>243</Height>
+    <Width>168</Width>
+    <PosY>220</PosY>
+    <PosX>56</PosX>
+  </AquEntryZone>
+  <Gamma>22</Gamma>
+  <Gain>2</Gain>
+  <Britghness>89</Britghness>
+  <Saturation>62</Saturation>
+  <Contrast>69</Contrast>
+  <Exposure>-5</Exposure>
+  <Focus>28</Focus>
+</Cam>
