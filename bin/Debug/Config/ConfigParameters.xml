@@ -33,6 +33,11 @@
   <DeltaIntensityRemoveBack>
     <Id>7</Id>
     <Name>Difference d'intensité pour détection avec le fond</Name>
-    <Value>90</Value>
+    <Value>111.16402116402117</Value>
   </DeltaIntensityRemoveBack>
+  <IndexCameraNumber>
+    <Id>8</Id>
+    <Name>Index de la camera</Name>
+    <Value>1</Value>
+  </IndexCameraNumber>
 </ConfigParametersClass>

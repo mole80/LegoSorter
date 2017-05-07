@@ -178,7 +178,7 @@ namespace Appl
 
                 SwitchPlateauRef0 = !ValRead[0];
                 SwitchPlateauPosition = !ValRead[1];
-                IsPieceDetected = !ValRead[2];
+                IsPieceDetected = ValRead[2];
                 SwitchPush = !ValRead[4];
 
                 DecodePlateauPosition();
@@ -190,11 +190,11 @@ namespace Appl
                     ValWrite[0] |= 8;
 
                 // D5 - Cmd3
-                if( IsPushEnable )
+                if(IsPlateauEnable)
                     ValWrite[0] |= 32;
 
                 //D6 - Cmd1
-                if( IsPlateauEnable )
+                if( IsPushEnable )
                     ValWrite[0] |= 64;
 
                 //D7 - Cmd4

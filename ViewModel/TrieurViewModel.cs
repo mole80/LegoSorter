@@ -177,13 +177,16 @@ namespace Appl
 
         void WaitPieceState()
         {
-            int size = GetImageAndSize( MainWindow.Model.Cam.AquEntryZone );
+            int size = GetImageAndSize( MainWindow.Model.Cam.AquBrickImage );
 
-            if ( !Hard.IsConvoyeurEnable )
-                Hard.EnableConvoyeur( true );
+            if (!Hard.IsConvoyeurEnable)
+            {
+                size = GetImageAndSize(MainWindow.Model.Cam.AquBrickImage);
+                Hard.EnableConvoyeur(true);
+            }
 
             //if ( size > MainWindow.Model.ConfigParameter.SizePieceDetection.Value )
-            if( Hard.IsPieceDetected )
+            if( Hard.IsPieceDetected || size > MainWindow.Model.ConfigParameter.SizePieceDetection.Value )
             {
                 Hard.EnableConvoyeur(false);
                 TextInfos = "Piece trouvée : taille = " + size.ToString();

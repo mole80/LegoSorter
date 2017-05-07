@@ -52,7 +52,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>0</NumberOfCircles>
-    <NumberOfLines>6</NumberOfLines>
+    <NumberOfLines>7</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>59110</Size>
@@ -131,7 +131,7 @@
     <Name>Technic_Big_12</Name>
   </ImageRef>
   <ImageRef>
-    <NumberOfCircles>1</NumberOfCircles>
+    <NumberOfCircles>2</NumberOfCircles>
     <NumberOfLines>8</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
@@ -232,7 +232,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>0</NumberOfCircles>
-    <NumberOfLines>6</NumberOfLines>
+    <NumberOfLines>7</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>30501</Size>
@@ -351,7 +351,7 @@
     <Name>Technic_Big_34</Name>
   </ImageRef>
   <ImageRef>
-    <NumberOfCircles>2</NumberOfCircles>
+    <NumberOfCircles>3</NumberOfCircles>
     <NumberOfLines>6</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
@@ -392,7 +392,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>0</NumberOfCircles>
-    <NumberOfLines>6</NumberOfLines>
+    <NumberOfLines>5</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>21012</Size>
@@ -412,7 +412,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>1</NumberOfCircles>
-    <NumberOfLines>6</NumberOfLines>
+    <NumberOfLines>5</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>45834</Size>
@@ -422,7 +422,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>1</NumberOfCircles>
-    <NumberOfLines>4</NumberOfLines>
+    <NumberOfLines>6</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>47994</Size>
@@ -451,7 +451,7 @@
     <Name>Technic_Big_44</Name>
   </ImageRef>
   <ImageRef>
-    <NumberOfCircles>1</NumberOfCircles>
+    <NumberOfCircles>2</NumberOfCircles>
     <NumberOfLines>8</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
@@ -512,7 +512,7 @@
   </ImageRef>
   <ImageRef>
     <NumberOfCircles>0</NumberOfCircles>
-    <NumberOfLines>6</NumberOfLines>
+    <NumberOfLines>5</NumberOfLines>
     <BrickType>Technic</BrickType>
     <CaseNumber>0</CaseNumber>
     <Size>20818</Size>

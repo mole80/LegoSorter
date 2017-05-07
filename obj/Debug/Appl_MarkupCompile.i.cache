@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Project\TestGit\LegAppl\obj\Debug\
+C:\Leg\LegoSorter\obj\Debug\
 Appl
 none
 false
 DEBUG;TRACE
-D:\Project\TestGit\LegAppl\App.xaml
+C:\Leg\LegoSorter\App.xaml
 10979763213
 
-32-247519586
-291187307080
+32-444203756
+29-1504747950
 CalculateImageRefWindows.xaml;MainWindow.xaml;View\AcquisitionConfig.xaml;View\ConfigParametersView.xaml;View\ConfigProgram.xaml;View\ConfigWebcam.xaml;View\GestionImageRef.xaml;View\HardwareConfigView.xaml;View\PlotImageRefInfosControl.xaml;View\TrieurControl.xaml;
 
 False
